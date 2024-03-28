@@ -197,7 +197,11 @@ test(`[English][IPhone-Safari] Filter vehicles by "Doors": 3`, async ({
   }
 });
 
-// test(`[English][IPhone-Safari] Filter vehicles by "Doors": 3 (((WITH ABORT DOUBLE CLICK ADS)))`, async ({ page, context, browser }) => {
+// test(`[English][IPhone-Safari] Filter vehicles by "Doors": 3 (((WITH ABORT DOUBLE CLICK ADS)))`, async ({
+//   page,
+//   context,
+//   browser,
+// }) => {
 //   // Abort double click ads
 //   await context.route("**/*", async (route) => {
 //     const url = route.request().url();
@@ -223,7 +227,7 @@ test(`[English][IPhone-Safari] Filter vehicles by "Doors": 3`, async ({
 //   await page.locator(`#rfMakes`).selectOption(`Volkswagen`);
 
 //   // Enter city/postal code for your desired search area = “T1X 0L3”
-//   const postalCode = "T2P 1J9"
+//   const postalCode = "T2P 1J9";
 //   await page.locator(`[placeholder="Postal code*"]:visible`).fill(postalCode);
 
 //   // Click “Show me cars”
@@ -233,9 +237,9 @@ test(`[English][IPhone-Safari] Filter vehicles by "Doors": 3`, async ({
 //   await page.locator(".list-item .list-title").first().waitFor();
 
 //   // Store number of Vehicles
-//   let numVehicles = await page.locator('.result-count:visible').innerText()
-//   numVehicles = stringToNumber('iphone', 'en', numVehicles)
-//   console.log(numVehicles)
+//   let numVehicles = await page.locator("#sbCount").innerText();
+//   numVehicles = stringToNumber("iphone", "en", numVehicles);
+//   console.log(numVehicles);
 
 //   //--------------------------------
 //   // Act:
@@ -245,53 +249,58 @@ test(`[English][IPhone-Safari] Filter vehicles by "Doors": 3`, async ({
 
 //   // Select 'Doors'
 //   await page.locator(`#faceted-parent-NumberOfDoors`).scrollIntoViewIfNeeded();
-//   await page.locator(`#faceted-parent-NumberOfDoors [class*="fa-chevron-down"]`).click();
+//   await page
+//     .locator(`#faceted-parent-NumberOfDoors [class*="fa-chevron-down"]`)
+//     .click();
 
 //   // Select '3'
 //   await page.locator(`[for*="do"]:has-text("3 Door")`).check();
 
 //   // Close 'Doors'
-//   await page.locator(`#faceted-parent-NumberOfDoors [class*="fa-chevron-down"]`).click();
+//   await page
+//     .locator(`#faceted-parent-NumberOfDoors [class*="fa-chevron-down"]`)
+//     .click();
 
 //   // Click "View Results"
 //   await page.locator(`#aFilterBtn`).click();
 
 //   // wait for vehicles to load
-//   await page.waitForTimeout(10 * 1000)
+//   await page.waitForTimeout(10 * 1000);
 //   await page.locator(".list-item .list-title").first().waitFor();
 
 //   //--------------------------------
 //   // Assert:
 //   //--------------------------------
 //   // Assert that number of filtered for vehicles found is less than 'numVehicles'
-//   let num3Door = await page.locator('#sbCount').innerText()
-//   num3Door = stringToNumber('iphone', 'en', num3Door)
+//   let num3Door = await page.locator("#sbCount").innerText();
+//   num3Door = stringToNumber("iphone", "en", num3Door);
 //   expect(num3Door).toBeLessThan(numVehicles);
 
 //   // Assert that the listings are all "3 Door"
 //   let vehicles = await page.locator(".list-item .list-title").count();
-//   console.log({vehicles})
+//   console.log({ vehicles });
 //   if (vehicles === 0) {
-//     throw new Error("🔴 There are no filtered vehicles to assert")
+//     throw new Error("🔴 There are no filtered vehicles to assert");
 //   }
 
 //   let checked = 0;
 //   while (checked < vehicles && checked < 15) {
 //     // Open listing
-//     await openListingIPhone(page, checked)
+//     await openListingIPhone(page, checked);
 
 //     // Open Specifications Dropdown
 //     try {
-//       await page.locator(`#btn-vdp-specs-toggle`).click({timeout: 5000});
+//       await page.locator(`#btn-vdp-specs-toggle`).click({ timeout: 5000 });
 //     } catch {}
 
 //     // Assert Doors
-//     await expect(page.locator(`.list-item:has-text("Doors") strong:has-text("3")`)).toBeVisible();
+//     await expect(
+//       page.locator(`.list-item:has-text("Doors") strong:has-text("3")`)
+//     ).toBeVisible();
 
 //     // Navigate back to SRP
 //     await returnToSRPIPhone(page);
 
 //     checked++;
 //   }
-
 // });
